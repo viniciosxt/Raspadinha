@@ -7,7 +7,7 @@
 
     <meta property="og:title" content="RASPADINHA DE NATAL 🎅">
     <meta property="og:description" content="Raspou, Achou, Ganhou! Ache 3 iguais e ganhe até R$ 30.000 no PIX.">
-    <meta property="og:image" content="https://image2url.com/images/1764297737948-3a62e1bb-281c-441b-8e0f-57fad9a9b11d.png">
+    <meta property="og:image" content="https://image2url.com/images/1764302005990-b6f99043-1f8d-4412-944b-a733f6ce3c14.png">
     <meta property="og:url" content="https://raspadinha-nine.vercel.app/">
     <meta property="og:type" content="website">
     
@@ -114,7 +114,8 @@
 
     <main>
         <section id="intro-section" class="content-section active">
-            <img src="https://image2url.com/images/1764297737948-3a62e1bb-281c-441b-8e0f-57fad9a9b11d.png" alt="Natal" class="hero-image">
+            <img src="https://image2url.com/images/1764302005990-b6f99043-1f8d-4412-944b-a733f6ce3c14.png" alt="Natal" class="hero-image">
+            
             <h2>Presente de Natal</h2>
             <p>Responda 3 perguntas simples e ganhe (1) Raspadinha de Natal.</p>
             <div style="text-align: center; margin: 20px 0; padding: 15px; background: #e8f5e9; border-radius: 10px;">
@@ -250,7 +251,6 @@
             const c = document.getElementById('scratch-canvas');
             const ctx = c.getContext('2d');
             c.width = 300; c.height = 300;
-            // Premios: R$ 30.000 (3x para ganhar)
             document.getElementById('prize-grid').innerHTML = `
                 <div class="grid-item">R$ 10</div><div class="grid-item">R$ 30.000</div><div class="grid-item">R$ 5</div>
                 <div class="grid-item">R$ 30.000</div><div class="grid-item">R$ 50</div><div class="grid-item">R$ 30.000</div>
@@ -284,24 +284,21 @@
         }
         function closeModalAndGo() { document.getElementById('prize-modal').classList.remove('visible'); goToSection('share-section'); }
 
-        // --- COMPARTILHAMENTO (MENSAGEM WHATSAPP) ---
+        // --- MENSAGEM WHATSAPP ---
         let shareCount = 0;
         function shareAction() {
             shareCount++;
             
-            // Pega a hora atual do dispositivo da pessoa
             const now = new Date();
             const hora = now.getHours().toString().padStart(2, '0');
             const min = now.getMinutes().toString().padStart(2, '0');
             const seg = now.getSeconds().toString().padStart(2, '0');
             const timeString = `${hora}:${min}:${seg}`;
 
-            // Texto atualizado conforme pedido
             const msg = `*RASPADINHA DE NATAL* 🎅\n\n*Raspou, Achou Ganhou seu presente*\n\nAche 3 iguais e ganhe na hora até *R$30.000,00* no seu PIX\n\n*Raspe grátis até: 25/12*\nhttps://raspadinha-nine.vercel.app/\n\nO meu saque caiu ás ${timeString}`;
             
             window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
             
-            // Atualiza barra
             document.getElementById('share-bar').style.width = ((shareCount/5)*100)+'%';
             document.getElementById('share-count').innerText = shareCount;
             if(shareCount >= 5) {
